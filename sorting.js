@@ -20,7 +20,7 @@ function updateSpeedLabel() {
 function generateArray() {
     array = [];
     for (let i = 0; i < arraySize; i++) {
-        array.push(Math.floor(Math.random() * 100));
+        array.push(Math.floor(Math.random() * 100)+1);
     }
     displayArray();
 }

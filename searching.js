@@ -20,7 +20,7 @@ function updateSpeedLabel() {
 function generateArray() {
     array = [];
     for (let i = 0; i < arraySize; i++) {
-        array.push(Math.floor(Math.random() * 100));
+        array.push(Math.floor(Math.random() * 100)+1);
     }
     displayArray();
 }
@@ -58,7 +58,7 @@ async function linearSearch() {
         bar.classList.add("searching");
         await sleep(delay);
         if (array[i] == searchValue) {
-            alert("Value found!");
+            bar.classList.remove("searching");
             bar.classList.add("active");
             return;
         }
@@ -68,32 +68,32 @@ async function linearSearch() {
 }
 
 async function binarySearch() {
-    let searchValue = prompt("Enter value to search (Binary Search): ");
-    let left = 0;
-    let right = array.length - 1;
-    
-    while (left <= right) {
-        let mid = Math.floor((left + right) / 2);
-        let barMid = document.getElementById(`bar-${mid}`);
-        barMid.classList.add("searching");
-        
+    array.sort((a, b) => a - b);
+    displayArray();
+
+    const target = prompt("Enter the number to search:");
+    let low = 0;
+    let high = array.length - 1;
+
+    while (low <= high) {
+        let mid = Math.floor((low + high) / 2);
+        let bar = document.getElementById(`bar-${mid}`);
+        bar.classList.add("searching");
         await sleep(delay);
 
-        if (array[mid] === Number(searchValue)) {
-            alert("Value found!");
-            barMid.classList.add("active");
+        if (array[mid] == target) {
+            bar.classList.remove("searching");
+            bar.classList.add("active");
             return;
+        } else if (array[mid] < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
         }
 
-        barMid.classList.remove("searching");
-        
-        if (array[mid] < searchValue) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
+        bar.classList.remove("searching");
     }
-    alert("Value not found.");
+    alert("Element not found!");
 }
 
 function sleep(ms) {
