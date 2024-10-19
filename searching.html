@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Searching Algorithm Visualizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 fw-bold">Searching Algorithm Visualizer</h1>
+
+        <div class="row mb-4">
+            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                <label for="arraySize" class="form-label fw-medium">Array Size: <span id="arraySizeLabel">20</span></label>
+                <input type="range" class="form-range" min="10" max="100" id="arraySize" value="20" onchange="updateArraySizeLabel()">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="speed" class="form-label fw-medium">Visualization Speed: <span id="speedLabel">300ms</span></label>
+                <input type="range" class="form-range" min="50" max="1000" step="50" id="speed" value="300" onchange="updateSpeedLabel()">
+            </div>
+        </div>
+
+        <div class="row mb-3 text-center">
+            <div class="col-12 col-md mb-2">
+                <button class="btn btn-warning w-100 fw-medium" onclick="generateArray()">Generate Array</button>
+            </div>
+            <div class="col-12 col-md mb-2">
+                <button class="btn btn-success w-100 fw-medium" onclick="linearSearch()">Linear Search</button>
+            </div>
+            <div class="col-12 col-md mb-2">
+                <button class="btn btn-success w-100 fw-medium" onclick="binarySearch()">Binary Search</button>
+            </div>
+        </div>
+
+        <div id="array-container" class="array-container"></div>
+    </div>
+
+    <script src="searching.js"></script>
+</body>
+</html>
